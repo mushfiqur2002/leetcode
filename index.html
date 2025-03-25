@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: black;
+        }
+        #bloob {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            filter: blur(10px);
+            /* animation: bloob 2s infinite; */
+        }
+
+        @keyframes bloob {
+            0% {
+                left: 0;
+                top: 0;
+            }
+            25% {
+                left: 100px;
+                top: 0;
+            }
+            50% {
+                left: 100px;
+                top: 100px;
+            }
+            75% {
+                left: 0;
+                top: 100px;
+            }
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="bloob"></div>
+
+    <script>
+        let bloob = document.getElementById('bloob');
+        document.onpointermove = event => {
+            const {clientX, clientY} = event;
+            // bloob.style.left = `${clientX-50}px`;
+            // bloob.style.top = `${clientY-50}px`;
+            bloob.animate([
+                {left: `${bloob.style.left}`, top: `${bloob.style.top}`},
+                {left: `${clientX-50}px`, top: `${clientY-50}px`}
+            ], {
+                duration: 3000,
+                iterations: 1,
+                fill: 'forwards'
+            });
+        }
+    </script>
+</body>
+
+</html>
